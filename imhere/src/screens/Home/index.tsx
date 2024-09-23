@@ -8,6 +8,10 @@ export default function Home() {
         console.log('Botão adicionar clicado')
     }
 
+    function handleParticipantRemove(name: string){
+        console.log(`Cliquei para remover ${name}`)
+    }
+
   return(
     <View style={styles.container}> 
 
@@ -29,9 +33,9 @@ export default function Home() {
             </TouchableOpacity>
         </View>
 
-        <Participant name="Maria Clara Couto Lorena"/>
-        <Participant name="Thiago Cortez"/>
-        <Participant name="Marcos Alves"/>
+        <Participant name="Maria Clara Couto Lorena" onRemove={() => handleParticipantRemove("Clara")}/>
+        <Participant name="Thiago Cortez" onRemove={() => handleParticipantRemove("Thiago")}/>
+        <Participant name="Marcos Alves" onRemove={() => handleParticipantRemove("Marcos")}/>
 
     </View>
   )
