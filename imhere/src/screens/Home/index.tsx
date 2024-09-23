@@ -1,8 +1,9 @@
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, FlatList, Flat } from 'react-native';
 import { styles } from './styles'
 import { Participant } from '../../components/Participant'
 
 export default function Home() {
+    const participants = ["Clara", "Thiago", "Marcos", "Ana", "Julia", "Tassso", "Betânia", "Nicolas", "Rafael"]
   
     function handleParticipantAdd(){
         console.log('Botão adicionar clicado')
@@ -33,9 +34,24 @@ export default function Home() {
             </TouchableOpacity>
         </View>
 
-        <Participant name="Maria Clara Couto Lorena" onRemove={() => handleParticipantRemove("Clara")}/>
-        <Participant name="Thiago Cortez" onRemove={() => handleParticipantRemove("Thiago")}/>
-        <Participant name="Marcos Alves" onRemove={() => handleParticipantRemove("Marcos")}/>
+        <FlatList
+            data={participants}
+            keyExtractor={item => item}
+            renderItem={({item}) => (
+                <Participant
+                    name={item} 
+                    onRemove={() => handleParticipantRemove(item)}
+                />
+            )}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={ () => (
+                <Text style={styles.listEmptytext}>
+                    Ninguém chegou au seu evento ainda? Adicione participantes a sua lista de presença
+                </Text>
+            )}
+        />
+
+                           
 
     </View>
   )
