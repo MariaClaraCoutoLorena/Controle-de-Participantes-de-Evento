@@ -5,7 +5,7 @@ import { Participant } from '../../components/Participant'
 
 export default function Home() {
     
-    const [participants , setParticipants] = useState(["Clara"]);
+    const [participants , setParticipants] = useState<string[]>([]);
     const [participantName, setParticipantName] = useState('')
 
     function addParticipants(participantName: string) {
@@ -26,8 +26,8 @@ export default function Home() {
             {
                 text: "Sim",
                 onPress: () => {
-                    participants.splice(participants.indexOf(name),1)
-                    Alert.alert("Participante removido com sucesso!")
+                    setParticipants(prevState => prevState.filter(participant => participant !== name));
+                    Alert.alert("Participante removido com sucesso!");
                 }
             },
             {
